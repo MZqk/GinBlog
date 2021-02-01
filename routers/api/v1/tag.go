@@ -6,10 +6,18 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
+	"time"
 )
 
+// @Summary 新疆tag
+// @Description 上传tag的name
+// @Produce  json
+// @Param  ID query string true "id"
+// @Success 200 {string} json {"data":{},"webroot":""}
+// @Router /api/v1/tag/ [post]
 func Createtag(ctx *gin.Context) {
-	models.Createtag()
+	tag := ctx.Query("tag")
+	models.Createtag(tag)
 	ctx.JSON(http.StatusOK, gin.H{
 		"datas":   "创建数据成功",
 		"webroot": "tag",
@@ -24,7 +32,7 @@ func Createtag(ctx *gin.Context) {
 // @Router /api/v1/tag/ [get]
 func Selecttag(ctx *gin.Context) {
 	datas := models.Selecttag()
-	ctx.JSON(http.StatusOK, gin.H{
+	ctx.YAML(http.StatusOK, gin.H{
 		"datas":   datas,
 		"webroot": "tag",
 	})
@@ -32,10 +40,10 @@ func Selecttag(ctx *gin.Context) {
 
 func Gettag(ctx *gin.Context) {
 	tagid := ctx.Param("id")
-	fmt.Println("传入tag的id为：", tagid)
 	id, _ := strconv.Atoi(tagid)
 	fmt.Println(id)
 	datas := models.Gettag(id)
+	time.Sleep(time.Second * 2)
 	ctx.JSON(http.StatusOK, gin.H{
 		"datas":   datas,
 		"webroot": "tag",

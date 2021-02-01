@@ -6,12 +6,14 @@ import (
 )
 
 var (
-	Cfg      *ini.File
-	err      error
-	App_mode string
-	Datafile string
-	Datatype string
-	Port     int
+	Cfg        *ini.File
+	err        error
+	App_mode   string
+	Datafile   string
+	Datatype   string
+	Port       int
+	JwtSecret  string
+	ExpireTime int
 )
 
 func init() {
@@ -23,4 +25,7 @@ func init() {
 	Datatype = Cfg.Section("database").Key("datatype").String()
 	Port = Cfg.Section("server").Key("port").MustInt()
 	App_mode = Cfg.Section("").Key("app_mode").String()
+	//JwtSecret = Cfg.Section("jwt").Key("jwtSecret").String()
+	ExpireTime = Cfg.Section("jwt").Key("expireTime").MustInt()
+
 }

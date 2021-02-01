@@ -7,7 +7,7 @@ import (
 )
 
 // @title Swagger Example API
-// @version 1.0
+// @version 1.0c
 // @description This is a sample server celler server.
 // @termsOfService http://swagger.io/terms/
 

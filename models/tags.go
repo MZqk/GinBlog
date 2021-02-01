@@ -24,8 +24,8 @@ func init() {
 	}
 }
 
-func Createtag() {
-	DB.Create(&Tag{Name: "test2", Created_by: "mz", Created_on: time.Now(), State: 1})
+func Createtag(tag string) {
+	DB.Create(&Tag{Name: tag, Created_by: "mz", Created_on: time.Now(), State: 1})
 }
 
 func Selecttag() (tag []Tag) {

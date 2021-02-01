@@ -7,7 +7,9 @@ import (
 )
 
 func Createuser(ctx *gin.Context) {
-	models.Createuser()
+	username := ctx.PostForm("username")
+	password := ctx.PostForm("password")
+	models.Createuser(username, password)
 	ctx.JSON(http.StatusOK, gin.H{
 		"datas":   "用户创建成功",
 		"webroot": "user",

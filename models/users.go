@@ -19,11 +19,20 @@ func init() {
 	}
 }
 
-func Createuser() {
-	DB.Create(&User{Username: "mz", Password: "1q2w3e"})
+func Createuser(username, password string) {
+	DB.Create(map[string]interface{}{"username": username, "password": password})
 }
 
 func Selectuser() (user []User) {
-	DB.Model(&User{}).Find(&user)
+	DB.Debug().Select("username").Find(&user)
 	return
+}
+
+func CheckAuth(username, password string) bool {
+	var user User
+	DB.Debug().Select("id").Where(map[string]interface{}{"username": username, "password": password}).Find(&user)
+	if user.Id > 0 {
+		return true
+	}
+	return false
 }
